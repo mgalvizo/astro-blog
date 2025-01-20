@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Greeting from "../components/greeting/Greeting";
 
 import "../styles/globals.css";
 
@@ -8,4 +9,7 @@ const pageTitle = "Home Page";
 
 <BaseLayout pageTitle={pageTitle}>
   <h2>My awesome blog subtitle</h2>
+  <!-- The client:load directive tells Astro to send and rerun its JavaScript on the client when the page loads, 
+   making the component interactive. This is called a hydrated component -->
+  <Greeting messages={["Hi", "Hello", "Howdy", "Hey there"]} client:load />
 </BaseLayout>
