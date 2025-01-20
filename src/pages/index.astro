@@ -1,29 +1,11 @@
 ---
-import Header from "../components/header/Header.astro";
-import Footer from "../components/footer/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 import "../styles/globals.css";
 
 const pageTitle = "Home Page";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <Header />
-
-    <h1>{pageTitle}</h1>
-    <script>
-      document.querySelector(".hamburger")?.addEventListener("click", () => {
-        document.querySelector(".nav-links")?.classList.toggle("expanded");
-      });
-    </script>
-    <Footer />
-  </body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <h2>My awesome blog subtitle</h2>
+</BaseLayout>
