@@ -1,4 +1,6 @@
 ---
+import "../../styles/globals.css";
+
 const pageTitle = "About me";
 
 const identity = {
@@ -27,6 +29,7 @@ const textCase = "uppercase";
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <!-- Pass variable to style tag -->
+    <!-- Use the style tag to affect the HTML content of this single file -->
     <style define:vars={{ skillColor, fontWeight, textCase }}>
       h1 {
         color: purple;
