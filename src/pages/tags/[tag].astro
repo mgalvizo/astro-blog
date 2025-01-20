@@ -1,24 +1,21 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/blog-post/BlogPost.astro";
 
 // The getStaticPaths function returns an array of page routes, and all of the pages at those routes will use the same template defined in the file.
 export async function getStaticPaths() {
-  const allPosts = Object.values(
-    import.meta.glob("../posts/*.md", { eager: true }),
-  );
+  // Fetch content and metadata from your Markdown files
+  const allPosts = await getCollection("blog");
 
   const uniqueTags = [
-    ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post: any) =>
-      post.frontmatter.tags.includes(tag),
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag),
     );
-
-    // A getStaticPaths function should always return a list of objects containing params (what to call each page route)
-    // and optionally any props (data that you want to pass to those pages).
     return {
       params: { tag },
       props: { posts: filteredPosts },
@@ -38,8 +35,8 @@ const filteredPosts = posts.filter((post: any) =>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      filteredPosts.map((post: any) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
+      posts.map((post) => (
+        <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
       ))
     }
   </ul>

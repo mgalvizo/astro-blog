@@ -1,5 +1,6 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+# No longer needed since the content is now wrapped in <MarkdownPostLayout /> in [...slug]/index.astro
+# layout: ../../layouts/MarkdownPostLayout.astro
 title: My Third Blog Post
 author: Astro Learner
 description: "I had some challenges, but asking in the community really helped!"
