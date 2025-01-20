@@ -23,21 +23,22 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<style define:vars={{ skillColor, fontWeight, textCase }}>
-  h1 {
-    color: purple;
-    font-size: 4rem;
-  }
-  .skill {
-    /* Using the passed variable */
-    color: var(--skillColor);
-    font-weight: var(--fontWeight);
-    text-transform: var(--textCase);
-  }
-</style>
 <BaseLayout pageTitle={pageTitle}>
   <!-- Pass variable to style tag -->
   <!-- Use the style tag to affect the HTML content of this single file -->
+  <!-- Add the is:global attribute to your style tag to affect every element on this page -->
+  <style is:global define:vars={{ skillColor, fontWeight, textCase }}>
+    h1 {
+      color: purple;
+      font-size: 4rem;
+    }
+    .skill {
+      /* Using the passed variable */
+      color: var(--skillColor);
+      font-weight: var(--fontWeight);
+      text-transform: var(--textCase);
+    }
+  </style>
 
   <h2>... and my new Astro site!</h2>
 
