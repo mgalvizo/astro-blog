@@ -1,5 +1,5 @@
 ---
-import Navigation from "../components/navigation/Navigation.astro";
+import Header from "../components/header/Header.astro";
 import Footer from "../components/footer/Footer.astro";
 
 import "../styles/globals.css";
@@ -16,9 +16,14 @@ const pageTitle = "Home Page";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Navigation />
+    <Header />
 
     <h1>{pageTitle}</h1>
+    <script>
+      document.querySelector(".hamburger")?.addEventListener("click", () => {
+        document.querySelector(".nav-links")?.classList.toggle("expanded");
+      });
+    </script>
     <Footer />
   </body>
 </html>
