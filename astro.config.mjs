@@ -6,6 +6,8 @@ import react from "@astrojs/react";
 
 import netlify from "@astrojs/netlify";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
@@ -15,6 +17,8 @@ export default defineConfig({
     react(),
   ],
 
-  adapter: netlify(),
-  output: "server",
+  // adapter: netlify(),
+  adapter: node({
+    mode: "standalone",
+  }),
 });
