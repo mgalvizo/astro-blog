@@ -15,5 +15,5 @@ const pageTitle = "Home Page";
    making the component interactive. This is called a hydrated component -->
   <Greeting messages={["Hi", "Hello", "Howdy", "Hey there"]} client:load />
   <Counter client:load />
-  <DisplayAmount client:load />
+  <DisplayAmount client:only="react" />
 </BaseLayout>
