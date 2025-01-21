@@ -1,6 +1,9 @@
 ---
+import ClientRouter from "astro/components/ClientRouter.astro";
+
 import Header from "../components/header/Header.astro";
 import Footer from "../components/footer/Footer.astro";
+import Button from "../components/button/Button";
 
 import "../styles/globals.css";
 
@@ -13,6 +16,8 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
+
     <title>{pageTitle}</title>
   </head>
   <body>
@@ -22,6 +27,7 @@ const { pageTitle } = Astro.props;
     <!-- Inject child content -->
     <slot />
     <Footer />
+    <Button client:load />
     <!-- JavaScript file import -->
     <script>
       import "../scripts/menu.js";

@@ -2,6 +2,8 @@
 import Navigation from "../navigation/Navigation.astro";
 import Hamburguer from "../hamburguer/Hamburguer.astro";
 import ThemeIcon from "../theme-icon/ThemeIcon.astro";
+import DisplayAmount from "../display-amount/DisplayAmount";
+import Button from "../button/Button";
 ---
 
 <header>
@@ -9,5 +11,7 @@ import ThemeIcon from "../theme-icon/ThemeIcon.astro";
     <Hamburguer />
     <ThemeIcon />
     <Navigation />
+    <DisplayAmount client:load />
+    <Button client:load />
   </nav>
 </header>

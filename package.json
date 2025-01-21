@@ -10,11 +10,18 @@
   },
   "dependencies": {
     "@astrojs/preact": "^4.0.3",
+    "@astrojs/react": "^4.1.6",
     "@astrojs/rss": "^4.0.11",
+    "@nanostores/persistent": "^0.10.2",
     "@nanostores/preact": "^0.5.2",
+    "@nanostores/react": "^0.8.4",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
     "astro": "^5.1.8",
     "nanostores": "^0.11.3",
-    "preact": "^10.25.4"
+    "preact": "^10.25.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "prettier": "^3.4.2",

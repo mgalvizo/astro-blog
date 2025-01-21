@@ -26,16 +26,14 @@ export async function getStaticPaths() {
 // Access to the params object is provided by Astro, and it contains the dynamic route parameters.
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const filteredPosts = posts.filter((post: any) =>
-  post.frontmatter.tags?.includes(tag),
-);
+const filteredPosts = posts.filter((post: any) => post.data.tags.includes(tag));
 ---
 
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      posts.map((post) => (
+      filteredPosts.map((post) => (
         <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
       ))
     }
