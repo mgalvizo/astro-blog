@@ -5,16 +5,37 @@ import { getCollection, render } from "astro:content";
 import MarkdownPostLayout from "../../../layouts/MarkdownPostLayout.astro";
 
 // Make each blog post’s slug and page content available to each page it will generate
-export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+// The getStaticPaths function returns an array of page routes, and all of the pages at those routes will use the same template defined in the file.
+// Not executed at build time if prerender is set to false
+// export async function getStaticPaths() {
+//   try {
+//     const posts = await getCollection("blog");
 
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+//     if (!posts) {
+//       throw new Error("No posts found");
+//     }
+
+//     return posts.map((post) => ({
+//       params: { slug: post.id },
+//       props: { post },
+//     }));
+//   } catch (error) {
+//     console.error(error);
+
+//     return [];
+//   }
+// }
+
+const allPosts = await getCollection("blog");
+
+const { slug } = Astro.params;
+// const { post } = Astro.props;
+const post = allPosts.find((post) => post.id === slug);
+
+if (!post) {
+  return;
 }
 
-const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 

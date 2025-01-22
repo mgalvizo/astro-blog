@@ -6,29 +6,48 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/blog-post/BlogPost.astro";
 
 // The getStaticPaths function returns an array of page routes, and all of the pages at those routes will use the same template defined in the file.
-export async function getStaticPaths() {
-  // Fetch content and metadata from your Markdown files
-  const allPosts = await getCollection("blog");
+// Not executed at build time if prerender is set to false
+// export async function getStaticPaths() {
+//   try {
+//     // Fetch content and metadata from your Markdown files
+//     const allPosts = await getCollection("blog");
+//     console.log(allPosts);
 
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
-  ];
+//     if (!allPosts) {
+//       throw new Error("No posts found");
+//     }
 
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag),
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
-}
+//     const uniqueTags = [
+//       ...new Set(allPosts.map((post) => post.data.tags).flat()),
+//     ];
+
+//     return uniqueTags.map((tag) => {
+//       const filteredPosts = allPosts.filter((post) =>
+//         post.data.tags.includes(tag),
+//       );
+//       return {
+//         params: { tag },
+//         props: { posts: filteredPosts },
+//       };
+//     });
+//   } catch (error) {
+//     console.error(error);
+
+//     return [];
+//   }
+// }
+
+const allPosts = await getCollection("blog");
+
+if (!allPosts) return;
 
 // Access to the params object is provided by Astro, and it contains the dynamic route parameters.
 const { tag } = Astro.params;
-const { posts } = Astro.props;
-const filteredPosts = posts.filter((post: any) => post.data.tags.includes(tag));
+// const { posts } = Astro.props;
+// const filteredPosts = posts.filter((post: any) => post.data.tags.includes(tag));
+const filteredPosts = allPosts.filter((post: any) =>
+  post.data.tags.includes(tag),
+);
 ---
 
 <BaseLayout pageTitle={tag}>
